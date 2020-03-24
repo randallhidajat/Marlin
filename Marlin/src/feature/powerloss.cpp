@@ -78,6 +78,7 @@ void PrintJobRecovery::init() { memset(&info, 0, sizeof(info)); }
  * Enable or disable then call changed()
  */
 void PrintJobRecovery::enable(const bool onoff) {
+	SERIAL_ECHOLN("==PowerLoss_Enable==");
   enabled = onoff;
   changed();
 }
@@ -88,6 +89,7 @@ void PrintJobRecovery::enable(const bool onoff) {
  *  - Disabled: Write the job recovery file
  */
 void PrintJobRecovery::changed() {
+	SERIAL_ECHOLN("==PowerLoss_Changed==");
   if (!enabled)
     purge();
   else if (IS_SD_PRINTING())
@@ -100,6 +102,7 @@ void PrintJobRecovery::changed() {
  * If a saved state exists send 'M1000 S' to initiate job recovery.
  */
 void PrintJobRecovery::check() {
+	SERIAL_ECHOLN("==PowerLoss_Check==");
   //if (!card.isMounted()) card.mount();
   if (card.isMounted()) {
     load();
@@ -112,6 +115,7 @@ void PrintJobRecovery::check() {
  * Delete the recovery file and clear the recovery data
  */
 void PrintJobRecovery::purge() {
+	SERIAL_ECHOLN("==PowerLoss_Purge==");
   init();
   card.removeJobRecoveryFile();
 }
@@ -120,6 +124,8 @@ void PrintJobRecovery::purge() {
  * Load the recovery data, if it exists
  */
 void PrintJobRecovery::load() {
+
+	SERIAL_ECHOLN("==PowerLoss_Load==");
   if (exists()) {
     open(true);
     (void)file.read(&info, sizeof(info));
