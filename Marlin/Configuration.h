@@ -887,40 +887,42 @@
 
   // If you are using a pre-configured hotend then you can use one of the value sets by uncommenting it
 
-#if ENABLED(HotendStock)
-  #if ANY(MachineCR10SPro, MachineCR10Max)
-    #define DEFAULT_Kp 25.25
-    #define DEFAULT_Ki 2.17
-    #define DEFAULT_Kd 73.44
-  #elif ENABLED(MachineEnder5Plus)
-    #define  DEFAULT_Kp 14.72
-    #define  DEFAULT_Ki 0.89
-    #define  DEFAULT_Kd 61.22
-  #elif ENABLED(MachineCRX)
-    #define DEFAULT_Kp 19.00
-    #define DEFAULT_Ki 1.40
-    #define DEFAULT_Kd 66.00
-  #elif ENABLED(MachineCR10SV2)
-    #define  DEFAULT_Kp 19.47
-    #define  DEFAULT_Ki 1.59
-    #define  DEFAULT_Kd 59.40
-  #elif ENABLED(MachineCR2020)
-    #define  DEFAULT_Kp 22.2
-    #define  DEFAULT_Ki 1.08
-    #define  DEFAULT_Kd 114
-  #else
-    #define  DEFAULT_Kp 17.42
-    #define  DEFAULT_Ki 1.27
-    #define  DEFAULT_Kd 59.93
+  #if ENABLED(HotendMosquito)
+    #define DEFAULT_Kp 25.95
+    #define DEFAULT_Ki 3.08
+    #define DEFAULT_Kd 54.74
+  #elif ENABLED(HotendStock)
+    #if ANY(MachineCR10SPro, MachineCR10Max)
+      #define DEFAULT_Kp 25.25
+      #define DEFAULT_Ki 2.17
+      #define DEFAULT_Kd 73.44
+    #elif ENABLED(MachineEnder5Plus)
+      #define  DEFAULT_Kp 14.72
+      #define  DEFAULT_Ki 0.89
+      #define  DEFAULT_Kd 61.22
+    #elif ENABLED(MachineCRX)
+      #define DEFAULT_Kp 19.00
+      #define DEFAULT_Ki 1.40
+      #define DEFAULT_Kd 66.00
+    #elif ENABLED(MachineCR10SV2)
+      #define  DEFAULT_Kp 19.47
+      #define  DEFAULT_Ki 1.59
+      #define  DEFAULT_Kd 59.40
+    #elif ENABLED(MachineCR2020)
+      #define  DEFAULT_Kp 22.2
+      #define  DEFAULT_Ki 1.08
+      #define  DEFAULT_Kd 114
+    #else
+      #define  DEFAULT_Kp 17.42
+      #define  DEFAULT_Ki 1.27
+      #define  DEFAULT_Kd 59.93
+    #endif
+  #elif ENABLED(HotendE3D)
+    //E3D v6 Clone with 5050 fan wing at 100% set to 235
+    #define  DEFAULT_Kp 23.36
+    #define  DEFAULT_Ki 1.99
+    #define  DEFAULT_Kd 87.46
   #endif
-#endif
-
-#if ENABLED(HotendE3D)
-//E3D v6 Clone with 5050 fan wing at 100% set to 235
-#define  DEFAULT_Kp 23.36
-#define  DEFAULT_Ki 1.99
-#define  DEFAULT_Kd 87.46
-#endif
 
   // Ultimaker
   //#define DEFAULT_Kp 22.2
