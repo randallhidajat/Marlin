@@ -17,7 +17,7 @@
 //#define MachineCRX
 //#define MachineCR10Max
 //#define MachineS4
-//#define MachineS5
+#define MachineS5
 //#define MachineCR2020 // Industrial Series 2020
 
 // Atmega1284P machines Needs a bootloader flashed before installation
@@ -778,20 +778,20 @@
   #if(ENABLED(Dual_ChimeraDualNozzle))
     #define TEMP_SENSOR_1 1000
   #endif
-#elif ANY(HotendStock, CrealityThermistor)
-  #define TEMP_SENSOR_0 1
+#elif ENABLED(HotendMosquito)
+  #define TEMP_SENSOR_0 67
   #if(ENABLED(Dual_ChimeraDualNozzle))
-    #define TEMP_SENSOR_1 1
+    #define TEMP_SENSOR_1 67
   #endif
 #elif ENABLED(HotendE3D)
   #define TEMP_SENSOR_0 5
   #if(ENABLED(Dual_ChimeraDualNozzle))
     #define TEMP_SENSOR_1 5
   #endif
-#elif ENABLED(HotendMosquito)
-  #define TEMP_SENSOR_0 67
+#elif ANY(HotendStock, CrealityThermistor)
+  #define TEMP_SENSOR_0 1
   #if(ENABLED(Dual_ChimeraDualNozzle))
-    #define TEMP_SENSOR_1 67
+    #define TEMP_SENSOR_1 1
   #endif
 #endif
 #if(DISABLED(Dual_ChimeraDualNozzle))
