@@ -415,6 +415,9 @@
   #define LowMemoryBoard
 #endif
 //Show the Marlin bootscreen on startup. ** ENABLE FOR PRODUCTION **
+#if NONE(MachineEnder4, MachineCR10SPro, MachineCRX, MachineCR10Max, MachineEnder5Plus) || ENABLED(GraphicLCD)
+  #undef SolidBedMounts
+#endif
 
 #if NONE(MachineCR10Orig, MachineEnder4, MachineCR10SPro, MachineCRX, MachineCR10Max, MachineEnder5Plus) || ENABLED(GraphicLCD)
   #define SHOW_BOOTSCREEN
@@ -448,12 +451,6 @@
 
 #if ANY(SKR13, SKR14, SKR14Turbo, SKRPRO11) && NONE(MachineCR10SPro, MachineCRX, MachineEnder5Plus, MachineCR10Max) || (ENABLED(GraphicLCD) && NONE(Force10SProDisplay, ForceCRXDisplay))
   #define SERIAL_PORT_2 0
-#elif ANY(SKR13, SKR14, SKR14Turbo)
-  #define DGUS_SERIAL_PORT 0
-#elif ENABLED(SKR11PRO)
-  #define DGUS_SERIAL_PORT 1
-#elif ANY(MachineCR10SPro, MachineCRX, MachineEnder5Plus, MachineCR10Max) && DISABLED(GraphicLCD)
-  //#define DGUS_SERIAL_PORT 2
 #endif
 
 
