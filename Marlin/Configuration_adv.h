@@ -1802,7 +1802,7 @@
 
 // The ASCII buffer for serial input
 #define MAX_CMD_SIZE 96
-#ifENABLED(MachineCR10Orig) //melzi has more ram than a 2560
+#if ENABLED(MachineCR10Orig) //melzi has more ram than a 2560
   #define BUFSIZE 16
 #elif ANY(SKR13, SKR14, SKR14Turbo, SKRPRO11)
   #define BUFSIZE 8
