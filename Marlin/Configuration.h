@@ -15,6 +15,7 @@
 //#define MachineCR10SPro // Graphics LCD Requires soldering R64 and R66
 //#define MachineCR10SProV2 // Second Gen 10S Pro with BLTouch wired to Z Max
 //#define MachineCRX
+//#define MachineCRXPro
 //#define MachineCR10Max
 //#define MachineS4
 //#define MachineS5
@@ -382,7 +383,10 @@
   #define MeshStd
 #endif
 
-#if(ENABLED(MachineCRX))
+#if ENABLED(MachineCRXPro)
+  #define MachineCRX
+#endif
+#if ENABLED(MachineCRX)
   #define MachineCR10Std
   #define Dual_BowdenSplitterY
 #endif
@@ -1252,7 +1256,7 @@
   #define EStepsmm 409
 #elif ANY(EZRstruder, MachineCR10SV2)
   #define EStepsmm 93
-#elif ANY(MachineCR10SPro, MachineCR10Max)
+#elif ANY(MachineCR10SPro, MachineCR10Max, MachineCRXPro)
   #define EStepsmm 140
 #elif ENABLED(MachineCR2020)
   #define EStepsmm 113
@@ -1548,7 +1552,9 @@
  *
  * Specify a Probe position as { X, Y, Z }
  */
-#if ENABLED(MachineCRX, HotendStock)
+#if ENABLED(MachineCRXPro, HotendStock, ABL_BLTOUCH)
+  #define NOZZLE_TO_PROBE_OFFSET { 48, 3, 0 }
+#elif ENABLED(MachineCRX, HotendStock)
    #if ENABLED(ABL_BLTOUCH)
      #define NOZZLE_TO_PROBE_OFFSET { -22, -45, 0 }
    #elif ANY(ABL_EZABL, ABL_NCSW)
