@@ -195,7 +195,7 @@
 //#define EnclosureTempSensor // Uses PT100 Probe hooked to A12, only partially implemented upstream
 //#define EnclosureHeater //Planned to use A11 to control heater upstream, and repurpose the unused y max as the fan output. Not yet fully implemented upstream
 
-
+//#define UnstableTemps // define if temps are unstable and you need a temporary workaround
 
 /**
  * Marlin 3D Printer Firmware
@@ -854,8 +854,13 @@
 #define MAX_REDUNDANT_TEMP_SENSOR_DIFF 10
 
 #define TEMP_RESIDENCY_TIME     2  // (seconds) Time to wait for hotend to "settle" in M109
-#define TEMP_WINDOW              1  // (°C) Temperature proximity for the "temperature reached" timer
-#define TEMP_HYSTERESIS          3  // (°C) Temperature proximity considered "close enough" to the target
+#if ENABLED(UnstableTemps)
+  #define TEMP_WINDOW              5  // (°C) Temperature proximity for the "temperature reached" timer
+  #define TEMP_HYSTERESIS          7  // (°C) Temperature proximity considered "close enough" to the target
+#else
+  #define TEMP_WINDOW              1  // (°C) Temperature proximity for the "temperature reached" timer
+  #define TEMP_HYSTERESIS          3  // (°C) Temperature proximity considered "close enough" to the target
+#endif
 
 #define TEMP_BED_RESIDENCY_TIME 5  // (seconds) Time to wait for bed to "settle" in M190
 #define TEMP_BED_WINDOW          1  // (°C) Temperature proximity for the "temperature reached" timer
@@ -1593,7 +1598,7 @@
    #elif ANY(ABL_EZABL, ABL_NCSW)
      #define NOZZLE_TO_PROBE_OFFSET { -44, -10, 0 }
    #endif
-#elif ANY(MachineCR10SPro, MachineCR10Max) && ENABLED(HotendStock)
+#elif ANY(MachineCR10SPro, MachineCR10Max) && ENABLED(HotendStock) && DISABLED(MicroswissDirectDrive)
   #define NOZZLE_TO_PROBE_OFFSET { -27, 0, 0 }
 #elif (ANY(ABL_BLTOUCH, ABL_EZABL,ABL_NCSW) && ENABLED(E3DHemera))
     #define NOZZLE_TO_PROBE_OFFSET { -40, 0, 0 }
@@ -1603,9 +1608,11 @@
   #elif ENABLED(ABL_EZABL) || ENABLED(ABL_NCSW)
     #define NOZZLE_TO_PROBE_OFFSET { 45, 7, 0 }
   #endif
+#elif ENABLED(MicroswissDirectDrive) && ENABLED(ABL_BLTOUCH)
+  #define NOZZLE_TO_PROBE_OFFSET { -45, -5, 0 }
 #elif (ENABLED(ABL_BLTOUCH) && ENABLED(HotendStock))
   #define NOZZLE_TO_PROBE_OFFSET { -41, -8, 0 }
-#elif ((ENABLED(ABL_EZABL) || ENABLED(ABL_NCSW)) && ENABLED(HotendStock))
+#elif ((ANY(ABL_EZABL, ABL_NCSW)) && ENABLED(HotendStock))
   #if ENABLED(CREALITY_ABL_MOUNT)
     #define NOZZLE_TO_PROBE_OFFSET { -55, -15, 0 }
   #else
@@ -1934,7 +1941,10 @@
 
 
 // Travel limits (mm) after homing, corresponding to endstop positions.
-#if ANY(TOUCH_MI_PROBE, MicroswissDirectDrive)
+#if ENABLED(MicroswissDirectDrive)
+  #define X_MIN_POS -15
+  #define Y_MIN_POS -10
+#elif ENABLED(TOUCH_MI_PROBE)
   #define X_MIN_POS -4
   #define Y_MIN_POS -10
 #else
