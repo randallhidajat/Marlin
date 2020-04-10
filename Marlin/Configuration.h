@@ -138,6 +138,7 @@
  * Advanced motherboard replacement options
  */
 
+//#define OriginalCrealitySquareBoard
 //#define MachineCR10Orig // Forces Melzi board
 //#define Melzi_To_SBoardUpgrade // Upgrade Melzi board to 10S board
 //#define CrealitySilentBoard // Creality board with TMC2208 Standalone drivers. Disables Linear Advance
@@ -295,6 +296,10 @@
 #if ENABLED(CrealityTitan)
   #define DirectDrive
   #define E3DTitan
+#endif
+
+#if ENABLED(OriginalCrealitySquareBoard)
+  #define SD_DETECT_PIN -1
 #endif
 
 #if ENABLED(MicroswissDirectDrive)
