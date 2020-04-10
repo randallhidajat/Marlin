@@ -66,6 +66,7 @@
  //#define E3DHemera
  //#define CrealityTitan
 
+ //#define MicroswissDirecrDrive
  //#define DirectDrive // Any direct drive extruder, reduces filament change lengths
 
 /*
@@ -292,11 +293,15 @@
 #endif
 
 #if ENABLED(CrealityTitan)
-#define DirectDrive
-#define E3DTitan
+  #define DirectDrive
+  #define E3DTitan
 #endif
 
-#if(ENABLED(MachineCR10SPro))
+#if ENABLED(MicroswissDirecrDrive)
+  #define DirectDrive
+#endif
+
+#if ENABLED(MachineCR10SPro)
   #define MachineCR10Std
   #if DISABLED(ABL_BLTOUCH, ABL_EZABL, ABL_TOUCH_MI)
     #define ABL_NCSW
@@ -369,6 +374,7 @@
   #define SUICIDE_PIN_INVERTING true
   #define DirectDrive
 #endif
+
 #if ENABLED(PLUS)
   #if DISABLED(MachineCR10Orig)
     #define lerdgeFilSensor //Using lerdge filament sensor, which is opposite polarity to stock)
@@ -1275,6 +1281,8 @@
 
 #if ENABLED(CrealityTitan)
   #define EStepsmm 382.14
+#elif ENABLED(MicroswissDirecrDrive)
+  #define EStepsmm 130
 #elif(ENABLED(Bondtech) || ENABLED(E3DTitan))
   #define EStepsmm 415
 #elif ENABLED(E3DHemera)
@@ -1926,7 +1934,7 @@
 
 
 // Travel limits (mm) after homing, corresponding to endstop positions.
-#if ENABLED(TOUCH_MI_PROBE)
+#if ANY(TOUCH_MI_PROBE, MicroswissDirecrDrive)
   #define X_MIN_POS -4
   #define Y_MIN_POS -10
 #else
@@ -1980,7 +1988,7 @@
  * By default the firmware assumes HIGH=FILAMENT PRESENT.
  */
 #if (NONE(MachineCR10Orig, MachineCR20, MachineEnder4, MachineEnder5, MachineCRX, Melzi_To_SBoardUpgrade) || ANY(AddonFilSensor, lerdgeFilSensor, DualFilSensors  ))
-  #define FILAMENT_RUNOUT_SENSOR
+  //#define FILAMENT_RUNOUT_SENSOR
 #endif
 #if ENABLED(FILAMENT_RUNOUT_SENSOR)
   #if ENABLED(DualFilSensors)
@@ -2741,13 +2749,13 @@
 //======================== LCD / Controller Selection =========================
 //=====================   (I2C and Shift-Register LCDs)   =====================
 //=============================================================================
-#if(ENABLED(MachineEnder4) && DISABLED(GraphicLCD))
+#if ENABLED(MachineEnder4) && DISABLED(GraphicLCD)
   #define REPRAP_DISCOUNT_SMART_CONTROLLER
 #elif ENABLED(MachineEnder2)
   #define ENDER2_STOCKDISPLAY
 #elif ANY(MachineCR20, MachineCR2020)
   #define MKS_MINI_12864
-#elif ANY(OrigLCD, MachineCR10Orig)
+#elif ANY(OrigLCD, MachineCR10Orig) && DISABLED(GraphicLCD)
   #define CR10_STOCKDISPLAY
 #elif NONE(MachineCR10SPro, MachineCRX, MachineEnder5Plus, MachineCR10Max, OrigLCD, MachineCR10Orig) || ENABLED(GraphicLCD)
   #define REPRAP_DISCOUNT_FULL_GRAPHIC_SMART_CONTROLLER
