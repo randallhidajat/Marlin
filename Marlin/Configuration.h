@@ -66,7 +66,7 @@
  //#define E3DHemera
  //#define CrealityTitan
 
- //#define MicroswissDirecrDrive
+ //#define MicroswissDirectDrive
  //#define DirectDrive // Any direct drive extruder, reduces filament change lengths
 
 /*
@@ -297,7 +297,7 @@
   #define E3DTitan
 #endif
 
-#if ENABLED(MicroswissDirecrDrive)
+#if ENABLED(MicroswissDirectDrive)
   #define DirectDrive
 #endif
 
@@ -1281,7 +1281,7 @@
 
 #if ENABLED(CrealityTitan)
   #define EStepsmm 382.14
-#elif ENABLED(MicroswissDirecrDrive)
+#elif ENABLED(MicroswissDirectDrive)
   #define EStepsmm 130
 #elif(ENABLED(Bondtech) || ENABLED(E3DTitan))
   #define EStepsmm 415
@@ -1934,7 +1934,7 @@
 
 
 // Travel limits (mm) after homing, corresponding to endstop positions.
-#if ANY(TOUCH_MI_PROBE, MicroswissDirecrDrive)
+#if ANY(TOUCH_MI_PROBE, MicroswissDirectDrive)
   #define X_MIN_POS -4
   #define Y_MIN_POS -10
 #else
