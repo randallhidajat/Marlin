@@ -109,6 +109,7 @@
 //#define DualFilSensors //Using dual filament sensors on XMax and YMAX
 //#define FilamentEncoder //Using filamet jam sensor such as the Bigtreetech Encoder wheel
 
+//#define PurgeBucket //Adds automatic wiping on tool change if purge bucket is installed
 
 // Advanced options - Not for most users
 
@@ -2465,7 +2466,7 @@
  * Attention: EXPERIMENTAL. G-code arguments may change.
  *
  */
-#if ENABLED(MachineCRX)
+#if ANY(MachineCRX, PurgeBucket)
   #define NOZZLE_CLEAN_FEATURE
 #endif
 #if ENABLED(NOZZLE_CLEAN_FEATURE)
