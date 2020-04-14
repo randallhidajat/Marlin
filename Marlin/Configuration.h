@@ -15,7 +15,7 @@
 //#define MachineCR10SPro // Graphics LCD Requires soldering R64 and R66
 //#define MachineCR10SProV2 // Second Gen 10S Pro with BLTouch wired to Z Max
 //#define MachineCRX
-//#define MachineCRXPro
+#define MachineCRXPro
 //#define MachineCR10Max
 //#define MachineS4
 //#define MachineS5
@@ -109,7 +109,7 @@
 //#define DualFilSensors //Using dual filament sensors on XMax and YMAX
 //#define FilamentEncoder //Using filamet jam sensor such as the Bigtreetech Encoder wheel
 
-//#define PurgeBucket //Adds automatic wiping on tool change if purge bucket is installed
+#define PurgeBucket //Adds automatic wiping on tool change if purge bucket is installed
 
 // Advanced options - Not for most users
 
@@ -2479,8 +2479,8 @@
   // Specify positions for each tool as { { X, Y, Z }, { X, Y, Z } }
   // Dual hotend system may use { {  -20, (Y_BED_SIZE / 2), (Z_MIN_POS + 1) },  {  420, (Y_BED_SIZE / 2), (Z_MIN_POS + 1) }}
 
-  #define NOZZLE_CLEAN_START_POINT { 315, 40, (Z_MIN_POS + 1)}
-  #define NOZZLE_CLEAN_END_POINT   { 300, 40, (Z_MIN_POS + 1) }
+  #define NOZZLE_CLEAN_START_POINT {{ X_MAX_POS, 40, (Z_MIN_POS + 1)}, { X_MAX_POS, 40, (Z_MIN_POS + 1)} }
+  #define NOZZLE_CLEAN_END_POINT   {{ (X_MAX_POS - 10), 40, (Z_MIN_POS + 1) },  { (X_MAX_POS - 10), 40, (Z_MIN_POS + 1) } }
 
   // Circular pattern radius
   #define NOZZLE_CLEAN_CIRCLE_RADIUS 6.5
