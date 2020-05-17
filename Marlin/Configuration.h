@@ -13,7 +13,7 @@
 //#define MachineCR10S
 //#define MachineCR10SV2
 //#define MachineCR10SPro // Graphics LCD Requires soldering R64 and R66
-//#define MachineCR10SProV2 // Second Gen 10S Pro with BLTouch wired to Z Max
+#define MachineCR10SProV2 // Second Gen 10S Pro with BLTouch wired to Z Max
 //#define MachineCRX
 //#define MachineCRXPro
 //#define MachineCR10Max
@@ -44,14 +44,14 @@
    E3D Mounting assumes Groovemount
    Creality Mounting assumes bolt-on kit
 */
-//#define HotendStock
+#define HotendStock
 //#define HotendE3D
 //#define HotendMosquito
 
 //Enable this if you have an all metal hotend capable of 300c
-#ifndef HotendAllMetal
-  #define HotendAllMetal
-#endif
+//#ifndef HotendAllMetal
+//  #define HotendAllMetal
+//#endif
 
 // Enable this if you used a plug and play creality e3d or mosquito kit and kept the Creality thermistor
 //#define CrealityThermistor
@@ -97,7 +97,7 @@
  */
 
 //#define OrigLCD // Upgraded mainboard with single cable Ender LCD
-//#define GraphicLCD //Full graphics LCD for Ender 4, CR-X or CR10SPro
+#define GraphicLCD //Full graphics LCD for Ender 4, CR-X or CR10SPro
 //#define Big_UI // Lightweight status screen, saves CPU cycles
 
 // Touchscreen options - only 32 bit boards have the open serial ports to use with graphics displays above
