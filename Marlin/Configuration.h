@@ -44,9 +44,9 @@
    E3D Mounting assumes Groovemount
    Creality Mounting assumes bolt-on kit
 */
-#define HotendStock
+//#define HotendStock
 //#define HotendE3D
-//#define HotendMosquito
+#define HotendMosquito
 
 //Enable this if you have an all metal hotend capable of 300c
 //#ifndef HotendAllMetal
